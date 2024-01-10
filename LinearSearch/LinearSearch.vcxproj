@@ -129,9 +129,11 @@
   <ItemGroup>
     <ClCompile Include="LinearSearch.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ArrayGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinearSearch.h" />
+    <ClInclude Include="ArrayGenerator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
