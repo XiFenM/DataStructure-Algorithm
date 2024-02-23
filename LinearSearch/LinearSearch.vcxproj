@@ -130,10 +130,12 @@
     <ClCompile Include="LinearSearch.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ArrayGenerator.cpp" />
+    <ClCompile Include="Student.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinearSearch.h" />
     <ClInclude Include="ArrayGenerator.h" />
+    <ClInclude Include="Student.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
