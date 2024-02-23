@@ -19,6 +19,9 @@ int main() {
 	std::cout << "乱序整数列查找到的位置索引为"
 		<< LinearSearch::search<int>(rand_array, 9)
 		<< std::endl;
+	std::cout << "乱序整数列为：" ;
+	for (int i = 0; i < rand_array.size(); i++)
+		std::cout << rand_array[i] << " \n"[i == rand_array.size() - 1];
 	std::cout << "字符列查找到的位置索引为"
 		<< LinearSearch::search<char>(char_array, 'a')
 		<< std::endl;
