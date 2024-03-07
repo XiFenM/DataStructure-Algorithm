@@ -6,6 +6,7 @@ private:
     Sort()=default;
 public:
     template<typename T>
+    // requires std::totally_ordered<T> // C++ 20
     static std::vector<T> SelectSort(std::vector<T> unordered_array,bool descending = false) {
         int len = unordered_array.size();
         if (len < 2) return unordered_array;
@@ -29,6 +30,7 @@ public:
     }
 
     template<typename T>
+    // requires std::totally_ordered<T> // C++ 20
     static void InplaceSelectSort(std::vector<T>& unordered_array, bool descending = false) {
         int len = unordered_array.size();
         if (len < 2) return;
@@ -50,6 +52,7 @@ public:
     }
 
     template<typename T>
+    // requires std::totally_ordered<T> // C++ 20
     static void InplaceSelectSort2(std::vector<T>& unordered_array, bool descending = false){
         int len = unordered_array.size();
         if(len < 2) return ;
@@ -69,6 +72,30 @@ public:
                 }
             }
             std::swap(unordered_array[i],unordered_array[tmp_index]);
+        }
+    }
+
+
+    template<typename T>
+    // requires std::totally_ordered<T> // C++ 20
+    static void InsertSelectSort(std::vector<T>& unordered_array, bool descending = false){
+        int len = unordered_array.size();
+        T tmp;
+        if(len < 2) return;
+        for(int i = 0; i < len;i++){
+            tmp = unordered_array[i];
+            int j = i;
+            if(descending){
+                for(; j > 0 && unordered_array[j - 1] < tmp ; j --){
+                   unordered_array[j-1] = unordered_array[j];
+                }
+            }
+            else{
+                for(; j > 0 && unordered_array[j - 1] > tmp ; j --){
+                   unordered_array[j-1] = unordered_array[j];
+                }
+            }
+            unordered_array[j] = tmp;
         }
     }
 };

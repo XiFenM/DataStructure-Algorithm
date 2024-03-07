@@ -1,33 +1,27 @@
 #include <iostream>
 #include <vector>
 #include "Tools.h"
+#include "Student.h"
 #include "Sort.h"
 
 int main() {
-	//1.Generate random array
-	std::vector<int>  rand_array;
-	Tools::getRandArray(rand_array,100);
-	std::cout << "Original array: \n";
-	for (int i = 0; i < rand_array.size(); i++) {
-		std::cout << rand_array[i] << " \n"[i == rand_array.size()-1];
-	}
+	std::vector<int> int_rand_array,array_size_list = {20,100,1000,10000};
+	std::vector<Student>  student_rand_array;
 
-	//2.Sorting
-	//Non-inplace Select sort
-	std::cout<< "Non-inplace Select sort."<<std::endl;
-	std::vector<int>  ordered_array = Sort::SelectSort(rand_array);
-
-	//Inplace Select sort
-	// std::cout<< "inplace Select sort."<<std::endl;
-	// Sort::InplaceSelectSort(rand_array,true);
+	for(int array_size:array_size_list){
+		std::cout << "\nArray Size:" << array_size<< std::endl;
+		Tools::getRandArray(int_rand_array,array_size,array_size);
+		Tools::verifyInplaceSorting<int>(Sort::InsertSelectSort<int>,int_rand_array);
+		Tools::getRandArray(int_rand_array,array_size,array_size);
+		Tools::verifyInplaceSorting<int>(Sort::InsertSelectSort<int>,int_rand_array,true);
 
 
-	//3.Output
-	std::cout << "Ordered array: \n";
-	for (int i = 0; i < ordered_array.size(); i++) {
-		std::cout << ordered_array[i] << " \n"[i == ordered_array.size()-1];
+		Tools::getRandStudents(student_rand_array,array_size,array_size);
+		Tools::verifyInplaceSorting<Student>(Sort::InsertSelectSort<Student>,student_rand_array);
+		Tools::getRandStudents(student_rand_array,array_size,array_size);
+		Tools::verifyInplaceSorting<Student>(Sort::InsertSelectSort<Student>,student_rand_array,true);
 	}
 	return 0;
 }
 
-// g++ -o SortBasic main.cpp Sort.cpp ArrayGenerator.cpp
+// g++ -o SortBasic main.cpp Sort.cpp Student.cpp Tools.cpp
