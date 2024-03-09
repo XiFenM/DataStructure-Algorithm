@@ -6,10 +6,11 @@ const std::vector<std::string> Tools::name_list = {
 	"Azai","Basil","Che","Nile","Bogda","Taru","Ryatt","Lotem","Maple","Gera"
 };
 
-void Tools::getOrderedArray(std::vector<int>& array, int num) {
+void Tools::getOrderedArray(std::vector<int>& array, int num,bool descending) {
 	array.clear();
 	for (int i = 0; i < num; i++) {
-		array.push_back(i);
+		if(descending) array.push_back(num - i); 
+		else array.push_back(i);
 	}
 }
 void Tools::getRandArray(std::vector<int>& array, int num ,int upperbound) {

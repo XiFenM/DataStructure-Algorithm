@@ -12,7 +12,7 @@ private:
 	const static std::vector<std::string> name_list;
 	Tools()=default;
 public:
-	static void getOrderedArray(std::vector<int>& array, int num);
+	static void getOrderedArray(std::vector<int>& array, int num,bool descending = false);
 	static void getRandArray(std::vector<int>& array, int num ,int upperbound=100);
 	static void getRandStudents(std::vector<Student>& array,int num,int upperbound=100);
 
