@@ -8,7 +8,7 @@ void ArrayGenerator::getOrderedArray(std::vector<int>& array, int num) {
 	}
 }
 void ArrayGenerator::getArray(std::vector<int>& array, int num) {
-	srand(time(0));  // 设置随机数种子
+	srand(time(0));  // set random seed
 	for (int i = 0; i < num; i++) {
 		array.push_back( rand()%100 );
 	}
