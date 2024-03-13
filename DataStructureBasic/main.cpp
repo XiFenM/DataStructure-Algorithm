@@ -1,7 +1,10 @@
-#include "tinyVector.h" 
-#include "Student.h"
 #include <iostream>
-
+#include "tinyVector.h" 
+#include "tinyStack.h"
+#include "tinyQueue.h"
+#include "Student.h"
+#include "Solution.h"
+#include <string>
 
 
 void testTinyVector(){
@@ -15,10 +18,14 @@ void testTinyVector(){
     vec.show(); // 期望输出：0 1 2 3
 
     // 测试removeElement, removeIndex, removeFirst, removeLast
-    vec.removeElement(1);
-    vec.removeIndex(1); // 现在的1位置是2
-    vec.removeFirst();
-    vec.removeLast();
+    int deletedElement = vec.removeElement(1);
+    std::cout << "Deleted Element is " << deletedElement << std::endl;
+    deletedElement = vec.removeIndex(1); // 现在的1位置是2
+    std::cout << "Deleted Element is " << deletedElement << std::endl;
+    deletedElement = vec.removeFirst();
+    std::cout << "Deleted Element is " << deletedElement << std::endl;
+    deletedElement = vec.removeLast();
+    std::cout << "Deleted Element is " << deletedElement << std::endl;
     vec.show(); // 期望输出为空
 
     // 重新填充进行更多测试
@@ -59,7 +66,8 @@ void testTinyVector(){
     students.show();
 
     // 移除学生
-    students.removeIndex(3); // 假设这是Charlie的索引
+    Student RemovedStudent = students.removeIndex(3); // 假设这是Charlie的索引
+    std::cout << "Deleted Student is " << RemovedStudent << std::endl;
     std::cout << "After removing Charlie:" << std::endl;
     students.show();
 
@@ -80,9 +88,76 @@ void testTinyVector(){
     std::cout << students;
 }
 
+void testTinyStack(){
+    tinyStack<int> stack;
+
+    // 测试isEmpty在栈为空时
+    std::cout << "Is the stack empty? " << (stack.isEmpty() ? "Yes" : "No") << std::endl;
+
+    // 测试push和peek
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    std::cout << "Current top element (peek): " << stack.peek() << std::endl;
+    std::cout << "Current Stack: "<< stack<< std::endl;
+    // 测试getSize
+    std::cout << "Stack size: " << stack.getSize() << std::endl;
+
+    // 测试pop
+    std::cout << "Popping top element: " << stack.pop() << std::endl;
+    std::cout << "New top element (peek): " << stack.peek() << std::endl;
+    std::cout << "Stack size after pop: " << stack.getSize() << std::endl;
+    std::cout << "Current Stack: "<< stack<< std::endl;
+    
+    // 测试isEmpty在栈非空时
+    std::cout << "Is the stack empty now? " << (stack.isEmpty() ? "Yes" : "No") << std::endl;
+}
+
+void testValidParentheses(){
+    tinyVector<std::string> test_string_list ={
+        "([{}])","[{}(){","(","}(","(){}[]"
+    };
+    for(int i = 0 ;i < test_string_list.getSize();i++){
+        std::cout << Solution::isValid(test_string_list[i]) <<std::endl;
+    }
+}
+
+void testTinyQueue(){
+    tinyQueue<int> queue;
+
+    std::cout << "Enqueue elements 1 to 5." << std::endl;
+    for (int i = 1; i <= 5; ++i) {
+        queue.enqueue(i);
+        std::cout << queue << std::endl;
+    }
+
+    std::cout << "Current size: " << queue.getSize() << std::endl;
+    std::cout << "Capacity: " << queue.getCapacity() << std::endl;
+
+    std::cout << "Dequeue two elements." << std::endl;
+    for (int i = 0; i < 2; ++i) {
+        std::cout << "Dequeued: " << queue.dequeue() << std::endl;
+    }
+    std::cout << queue << std::endl;
+
+    std::cout << "Enqueue elements 6 to 8." << std::endl;
+    for (int i = 6; i <= 8; ++i) {
+        queue.enqueue(i);
+        std::cout << queue << std::endl;
+    }
+
+    std::cout << "Final queue: " << queue << std::endl;
+    std::cout << "Current size: " << queue.getSize() << std::endl;
+    std::cout << "Capacity: " << queue.getCapacity() << std::endl;
+    
+}
+
 int main() {
-    testTinyVector();
+    // testTinyVector();
+    // testTinyStack();
+    // testValidParentheses();
+    testTinyQueue();
     return 0;
 }
 
-// g++ -o DataStructureBasic main.cpp queue.cpp stack.cpp tinyVector.cpp Student.cpp
+// g++ -o DataStructureBasic main.cpp tinyQueue.cpp tinyStack.cpp tinyVector.cpp Student.cpp Solution.cpp
