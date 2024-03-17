@@ -9,9 +9,11 @@ private:
 public:
     static bool isValid(std::string s){
         if(s.size()<2) return false;
-        tinyStack<char> char_stack;
-        tinyVector<char> left_parenthesis = {'(', '{', '['},
-                        right_parenthesis = {')', '}', ']'};
+        tinyDS::stack::tinyStack<char> char_stack;
+        tinyDS::vector::tinyVector<char> 
+        left_parenthesis = {'(', '{', '['},
+        right_parenthesis = {')', '}', ']'};
+        
         int left_loc{0},right_loc{0};
         for(char& c : s){
             if(left_parenthesis.contains(c)){
@@ -33,4 +35,6 @@ public:
         }
         return char_stack.isEmpty();
     }
+
+
 };

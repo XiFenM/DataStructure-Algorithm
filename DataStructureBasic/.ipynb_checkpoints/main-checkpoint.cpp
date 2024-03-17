@@ -6,9 +6,11 @@
 #include "Solution.h"
 #include <chrono>
 #include <string>
+using namespace tinyDS;
+
 
 void testTinyVector(){
-    tinyDS::vector::tinyVector<int> vec; // 测试默认构造函数
+    tinyVector<int> vec; // 测试默认构造函数
 
     // 测试push_back, push_front, 和 insert
     vec.push_back(1);
@@ -44,8 +46,8 @@ void testTinyVector(){
     std::cout << "Modified Element at 0: " << vec[0] << std::endl; // 期望输出：10
 
     // 测试拷贝构造函数和拷贝赋值运算符
-    tinyDS::vector::tinyVector<int> vecCopy = vec;
-    tinyDS::vector::tinyVector<int> vecAssigned;
+    tinyVector<int> vecCopy = vec;
+    tinyVector<int> vecAssigned;
     vecAssigned = vec;
     vecCopy.show(); // 期望输出：10 5 6
     vecAssigned.show(); // 期望输出：10 5 6
@@ -54,7 +56,7 @@ void testTinyVector(){
     std::cout << vec << std::endl; // 期望输出：10 5 6
 
 
-    tinyDS::vector::tinyVector<Student> students;
+    tinyVector<Student> students;
 
     // 添加学生到tinyVector中
     students.push_back(Student(1, "Alice"));
@@ -89,7 +91,7 @@ void testTinyVector(){
 }
 
 void testTinyStack(){
-    tinyDS::stack::tinyStack<int> stack;
+    tinyStack<int> stack;
 
     // 测试isEmpty在栈为空时
     std::cout << "Is the stack empty? " << (stack.isEmpty() ? "Yes" : "No") << std::endl;
@@ -114,7 +116,7 @@ void testTinyStack(){
 }
 
 void testValidParentheses(){
-    tinyDS::vector::tinyVector<std::string> test_string_list ={
+    tinyVector<std::string> test_string_list ={
         "([{}])","[{}(){","(","}(","(){}[]"
     };
     for(int i = 0 ;i < test_string_list.getSize();i++){
@@ -123,7 +125,8 @@ void testValidParentheses(){
 }
 
 void testTinyQueue(){
-    tinyDS::queue::tinyQueue<int> queue;
+    tinyQueue<int> queue;
+
     std::cout << "Enqueue elements 1 to 5." << std::endl;
     for (int i = 1; i <= 5; ++i) {
         queue.enqueue(i);
@@ -173,41 +176,18 @@ void testQueuePerformance(size_t operations) {
     std::cout << "Elapsed time for " << operations << " operations: " << elapsed.count() << " ms\n";
 }
 
-void CompareQueuePerformance(){
+void testQueueTime(){
     size_t operations = 100000; // 选择一个操作数量，根据你的需要调整
 
     std::cout << "Testing queueVector performance:\n";
-    testQueuePerformance<tinyDS::queue::tinyQueue<int, tinyDS::queue::queueVector>>(operations);
+    testQueuePerformance<tinyQueue<int, queueVector>>(operations);
 
-    std::cout << "\nTesting CircularQueue performance:\n";
-    testQueuePerformance<tinyDS::queue::tinyQueue<int, tinyDS::queue::CircularQueue>>(operations);
-
-    std::cout << "\nTesting CircularQueue2 performance:\n";
-    testQueuePerformance<tinyDS::queue::tinyQueue<int, tinyDS::queue::CircularQueue2>>(operations);
-}
-
-void testDeque(){
-    // 在下面的双端队列的测试中，偶数从队尾加入；奇数从队首加入
-    tinyDS::deque::tinyDeque<int> dq(0);
-    for(int i = 0 ; i < 16 ; i ++){
-        if(i % 2 == 0) dq.addLast(i);
-        else dq.addFirst(i);
-        std::cout << dq <<"capacity:"<< dq.getCapacity() << std::endl;
-    }
-
-    // 之后，我们依次从队首和队尾轮流删除元素
-    std::cout << '\n';
-    for(int i = 0; !dq.isEmpty(); i ++){
-        if(i % 2 == 0) dq.removeFirst();
-        else dq.removeLast();
-        std::cout << dq <<"capacity:"<< dq.getCapacity() << std::endl;
-    }
+    std::cout << "\nTesting circularQueue performance:\n";
+    testQueuePerformance<tinyQueue<int, CircularQueue>>(operations);
 }
 
 int main() {
-    // CompareQueuePerformance();
-    testDeque();
-    // testTinyQueue();
+    testQueueTime();
     return 0;
 }
 

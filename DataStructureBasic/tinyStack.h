@@ -1,6 +1,8 @@
 #pragma once 
 #include <iostream>
 #include "tinyVector.h"
+namespace tinyDS{
+namespace stack{
 
 template<typename T>
 class tinyStack;
@@ -62,7 +64,7 @@ template<typename T>
 class stackVector{
 private:
     friend class tinyStack<T>;
-    tinyVector<T> stack;
+    vector::tinyVector<T> stack;
 
     stackVector(size_t len = 10)
         :stack(len)
@@ -106,4 +108,8 @@ private:
 template<typename U>
 std::ostream& operator<<(std::ostream& os,const stackVector<U>& obj){
     return os <<"Stack: "<< obj.stack << " TOP";
+}
+
+
+}
 }

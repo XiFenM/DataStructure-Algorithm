@@ -1,6 +1,9 @@
 #pragma once
 #include <cstddef>
 #include <iostream>
+namespace tinyDS{
+
+namespace vector{
 
 template <typename T>
 class tinyVector
@@ -275,4 +278,8 @@ const T* tinyVector<T>::end() const{
 template<typename T>
 T* tinyVector<T>::end(){
     return &this->data[this->size];
+}
+
+
+}
 }
