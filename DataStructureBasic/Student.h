@@ -6,8 +6,7 @@ class Student{
         int number;
         std::string name;
     public:
-        Student()=default;
-        Student(int id, std::string name_input)
+        Student(int id=-1, std::string name_input="Test")
             :number(id),name(name_input){}
         friend bool operator== (const Student& s1,const Student& s2);
         friend bool operator!= (const Student& s1,const Student& s2);

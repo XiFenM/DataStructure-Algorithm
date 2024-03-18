@@ -42,7 +42,7 @@ public:
 				}
 			}
 		}
-		std::cout << "该数组有序"<< std::endl;
+		std::cout << "This array is in order." << std::endl;
 		return true;
 	}
 

@@ -192,7 +192,7 @@ void testDeque(){
     for(int i = 0 ; i < 16 ; i ++){
         if(i % 2 == 0) dq.addLast(i);
         else dq.addFirst(i);
-        std::cout << dq <<"capacity:"<< dq.getCapacity() << std::endl;
+        std::cout << dq <<" capacity:"<< dq.getCapacity() << std::endl;
     }
 
     // 之后，我们依次从队首和队尾轮流删除元素
@@ -200,7 +200,7 @@ void testDeque(){
     for(int i = 0; !dq.isEmpty(); i ++){
         if(i % 2 == 0) dq.removeFirst();
         else dq.removeLast();
-        std::cout << dq <<"capacity:"<< dq.getCapacity() << std::endl;
+        std::cout << dq <<" capacity:"<< dq.getCapacity() << std::endl;
     }
 }
 
